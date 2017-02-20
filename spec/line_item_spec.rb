@@ -7,4 +7,9 @@ RSpec.describe LineItem, type: :model do
     it { should belong_to(:product) }
   end
 
+  context "validations" do
+    it { should validate_presence_of(:quantity) }
+    it { should validate_numericality_of(:quantity) }
+  end
+
 end
