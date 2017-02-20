@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bundle_quantity: 1
+  bundle_cost: 1.5
+  product: one
+
+two:
+  bundle_quantity: 1
+  bundle_cost: 1.5
+  product: two
