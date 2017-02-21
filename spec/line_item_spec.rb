@@ -14,15 +14,24 @@ RSpec.describe LineItem, type: :model do
 
   context "calculate_bundle quantities" do
 
+    before (:each) do
+      @line_item = build(:line_item)
+      @line_item.product = build(:product, name: "Rose", code: "R12")
+      @line_item.product.bundles = [build(:bundle_one_rose), build(:bundle_two_rose)]
+    end
+
     describe "simple rose bundle quantities" do
 
-      it "calculates single bundle of 5 roses when order quantity is 5" do
+      it "calculates single bundle of 10 roses when order quantity is 10" do
 
-        expect line_item.calculate_bundle_quantities.to eq[[1,5,6.99]]
+        @line_item.quantity = 10
+        @line_item.save
+
+        expect(@line_item.calculate_bundle_quantities).to eq([[1,10,12.99]])
 
       end
 
-      pending "calculates one bundle of 10 roses when order quantity is 10"
+      pending "calculates one bundle of 5 roses when order quantity is 5"
 
       pending "calculates one bundle of 5 and one bundle of 10 roses when order quantity is 15"
 

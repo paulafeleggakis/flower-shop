@@ -8,14 +8,14 @@ class LineItem < ApplicationRecord
 
     totals = []
 
-    bundle_quantities = product.packs.map(&:quantity).sort!.reverse
+    bundle_quantities = product.bundles.map{|bundle| [bundle.bundle_quantity, bundle.bundle_cost]}.sort {|a,b| b[1] <=> a[1]}
 
     bundle_quantities.each do |bundle|
       if quantity%bundle[0] == 0
         totals << [quantity/bundle[0], bundle[0], bundle[1]]
-        return totals
-        break
       end
+      puts totals.inspect
+      return totals
     end
   end
 
