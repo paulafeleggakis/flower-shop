@@ -12,4 +12,32 @@ RSpec.describe LineItem, type: :model do
     it { should validate_numericality_of(:quantity) }
   end
 
+  context "calculate_bundle quantities" do
+
+    context "simple rose bundle quantities" do
+
+      pending "calculates single bundle of 5 roses when order quantity is 5" do
+
+      end
+
+      pending "calculates one bundle of 10 roses when order quantity is 10" do
+
+      end
+
+      pending "calculates one bundle of 5 and one bundle of 10 roses when order quantity is 15" do
+
+      end
+
+      pending "raises an error if order quantity cannot be broken into available bundle sizes" do
+
+      end
+
+    end
+
+    context "order quantities based on coding brief supplied" do
+
+    end
+
+  end
+
 end
