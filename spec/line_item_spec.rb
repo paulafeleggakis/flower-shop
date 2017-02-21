@@ -14,27 +14,23 @@ RSpec.describe LineItem, type: :model do
 
   context "calculate_bundle quantities" do
 
-    context "simple rose bundle quantities" do
+    describe "simple rose bundle quantities" do
 
-      pending "calculates single bundle of 5 roses when order quantity is 5" do
+      it "calculates single bundle of 5 roses when order quantity is 5" do
 
-      end
-
-      pending "calculates one bundle of 10 roses when order quantity is 10" do
+        expect line_item.calculate_bundle_quantities.to eq[[1,5,6.99]]
 
       end
 
-      pending "calculates one bundle of 5 and one bundle of 10 roses when order quantity is 15" do
+      pending "calculates one bundle of 10 roses when order quantity is 10"
 
-      end
+      pending "calculates one bundle of 5 and one bundle of 10 roses when order quantity is 15"
 
-      pending "raises an error if order quantity cannot be broken into available bundle sizes" do
-
-      end
+      pending "raises an error if order quantity cannot be broken into available bundle sizes"
 
     end
 
-    context "order quantities based on coding brief supplied" do
+    describe "order quantities based on coding brief supplied" do
 
     end
 
