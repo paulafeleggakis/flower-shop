@@ -31,7 +31,14 @@ RSpec.describe LineItem, type: :model do
 
       end
 
-      pending "calculates one bundle of 5 roses when order quantity is 5"
+      it "calculates one bundle of 5 roses when order quantity is 5" do
+
+        @line_item.quantity = 5
+        @line_item.save
+
+        expect(@line_item.calculate_bundle_quantities).to eq([[1,5,6.99]])
+
+      end
 
       pending "calculates one bundle of 5 and one bundle of 10 roses when order quantity is 15"
 

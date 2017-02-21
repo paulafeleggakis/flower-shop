@@ -13,10 +13,11 @@ class LineItem < ApplicationRecord
     bundle_quantities.each do |bundle|
       if quantity%bundle[0] == 0
         totals << [quantity/bundle[0], bundle[0], bundle[1]]
+        break
       end
-      puts totals.inspect
-      return totals
     end
+
+    totals
   end
 
 
