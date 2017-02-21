@@ -1,32 +1,27 @@
-<%= form_for(line_item) do |f| %>
-  <% if line_item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(line_item.errors.count, "error") %> prohibited this line_item from being saved:</h2>
+<%= form_for([order, line_item], :html => { :role => "form" }) do |f| %>
+    <% if line_item.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(line_item.errors.count, "error") %> prohibited this line item from being saved:</h2>
 
-      <ul>
-      <% line_item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% line_item.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <table>
+      <tr>
+        <td>Product</td>
+        <td>Quantity</td>
+      </tr>
+      <tr>
+        <td><%= f.collection_select(:product_id, Product.order('name ASC'), :id, :name, {:prompt => 'Please select a Product'}) %></td>
+        <td><%= f.number_field(:quantity) %></td>
+      </tr>
+    </table>
+
+    <div class="actions">
+      <%= f.submit %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :quantity %>
-    <%= f.number_field :quantity %>
-  </div>
-
-  <div class="field">
-    <%= f.label :order_id %>
-    <%= f.text_field :order_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :product_id %>
-    <%= f.text_field :product_id %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
