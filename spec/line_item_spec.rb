@@ -23,24 +23,22 @@ RSpec.describe LineItem, type: :model do
     describe "simple rose bundle quantities" do
 
       it "calculates single bundle of 10 roses when order quantity is 10" do
-
         @line_item.quantity = 10
         @line_item.save
-
         expect(@line_item.calculate_bundle_quantities).to eq([[1,10,12.99]])
-
       end
 
       it "calculates one bundle of 5 roses when order quantity is 5" do
-
         @line_item.quantity = 5
         @line_item.save
-
         expect(@line_item.calculate_bundle_quantities).to eq([[1,5,6.99]])
-
       end
 
-      pending "calculates one bundle of 5 and one bundle of 10 roses when order quantity is 15"
+      it "calculates one bundle of 5 and one bundle of 10 roses when order quantity is 15" do
+        @line_item.quantity = 15
+        @line_item.save
+        expect(@line_item.calculate_bundle_quantities).to eq([[1,10,12.99],[1,5,6.99]])
+      end
 
       pending "raises an error if order quantity cannot be broken into available bundle sizes"
 
