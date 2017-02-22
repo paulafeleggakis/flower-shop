@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Bundle Totals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Bundle quantity</th>
+      <th>Bundle size</th>
+      <th>Bundle cost</th>
+      <th>Line item</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bundle_totals.each do |bundle_total| %>
+      <tr>
+        <td><%= bundle_total.bundle_quantity %></td>
+        <td><%= bundle_total.bundle_size %></td>
+        <td><%= bundle_total.bundle_cost %></td>
+        <td><%= bundle_total.line_item %></td>
+        <td><%= link_to 'Show', bundle_total %></td>
+        <td><%= link_to 'Edit', edit_bundle_total_path(bundle_total) %></td>
+        <td><%= link_to 'Destroy', bundle_total, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bundle Total', new_bundle_total_path %>

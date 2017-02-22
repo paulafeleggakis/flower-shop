@@ -5,6 +5,8 @@ RSpec.describe LineItem, type: :model do
   context "associations" do
     it { should belong_to(:order) }
     it { should belong_to(:product) }
+    it { should have_many(:bundle_totals) }
+
   end
 
   context "validations" do
@@ -25,19 +27,33 @@ RSpec.describe LineItem, type: :model do
       it "calculates single bundle of 10 roses when order quantity is 10" do
         @line_item.quantity = 10
         @line_item.save
-        expect(@line_item.calculate_bundle_quantities).to eq([[1,10,12.99]])
+
+        expect(@line_item.bundle_totals[0].bundle_quantity).to eq 1
+        expect(@line_item.bundle_totals[0].bundle_size).to eq 10
+        expect(@line_item.bundle_totals[0].bundle_cost).to eq 12.99
       end
 
       it "calculates one bundle of 5 roses when order quantity is 5" do
         @line_item.quantity = 5
         @line_item.save
-        expect(@line_item.calculate_bundle_quantities).to eq([[1,5,6.99]])
+
+        expect(@line_item.bundle_totals[0].bundle_quantity).to eq 1
+        expect(@line_item.bundle_totals[0].bundle_size).to eq 5
+        expect(@line_item.bundle_totals[0].bundle_cost).to eq 6.99
       end
 
       it "calculates one bundle of 5 and one bundle of 10 roses when order quantity is 15" do
         @line_item.quantity = 15
         @line_item.save
-        expect(@line_item.calculate_bundle_quantities).to eq([[1,10,12.99],[1,5,6.99]])
+
+        expect(@line_item.bundle_totals[0].bundle_quantity).to eq 1
+        expect(@line_item.bundle_totals[0].bundle_size).to eq 10
+        expect(@line_item.bundle_totals[0].bundle_cost).to eq 12.99
+
+        expect(@line_item.bundle_totals[1].bundle_quantity).to eq 1
+        expect(@line_item.bundle_totals[1].bundle_size).to eq 5
+        expect(@line_item.bundle_totals[1].bundle_cost).to eq 6.99
+
       end
 
       it "raises an error if order quantity cannot be broken into available bundle sizes" do

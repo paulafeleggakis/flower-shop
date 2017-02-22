@@ -1,0 +1,1 @@
+json.partial! "bundle_totals/bundle_total", bundle_total: @bundle_total

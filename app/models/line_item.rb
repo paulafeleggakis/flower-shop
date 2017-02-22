@@ -1,10 +1,19 @@
 class LineItem < ApplicationRecord
   belongs_to :order
   belongs_to :product
+  has_many :bundle_totals
 
   validates :quantity, presence: true, numericality: true
 
-  before_create :calculate_bundle_quantities
+  before_create :allocate_bundle_totals
+
+  def allocate_bundle_totals
+    calculate_bundle_quantities.each do |quantity|
+      bundle_totals << BundleTotal.new(bundle_quantity: quantity[0], bundle_size: quantity[1], bundle_cost: quantity[2])
+    end
+  end
+
+  private
 
   def calculate_bundle_quantities
     bundle_quantities = []
@@ -28,11 +37,9 @@ class LineItem < ApplicationRecord
 
   end
 
-  private
-
   def check_valid_quantity?(bundle_quantities, quantity)
     calc_quantity = bundle_quantities.inject(0){|memo, bundle| memo + (bundle[0] * bundle[1])}
     calc_quantity == quantity ? true : false
   end
-  
+
 end

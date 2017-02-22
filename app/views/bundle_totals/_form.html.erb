@@ -1,0 +1,37 @@
+<%= form_for(bundle_total) do |f| %>
+  <% if bundle_total.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bundle_total.errors.count, "error") %> prohibited this bundle_total from being saved:</h2>
+
+      <ul>
+      <% bundle_total.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :bundle_quantity %>
+    <%= f.number_field :bundle_quantity %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bundle_size %>
+    <%= f.number_field :bundle_size %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bundle_cost %>
+    <%= f.text_field :bundle_cost %>
+  </div>
+
+  <div class="field">
+    <%= f.label :line_item_id %>
+    <%= f.text_field :line_item_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

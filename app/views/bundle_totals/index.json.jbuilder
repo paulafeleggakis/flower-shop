@@ -1,0 +1,1 @@
+json.array! @bundle_totals, partial: 'bundle_totals/bundle_total', as: :bundle_total

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :bundle_totals
   resources :bundles
   resources :line_items
   resources :products

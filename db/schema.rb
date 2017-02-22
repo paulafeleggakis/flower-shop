@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220092522) do
+ActiveRecord::Schema.define(version: 20170222101003) do
+
+  create_table "bundle_totals", force: :cascade do |t|
+    t.integer  "bundle_quantity"
+    t.integer  "bundle_size"
+    t.float    "bundle_cost"
+    t.integer  "line_item_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["line_item_id"], name: "index_bundle_totals_on_line_item_id"
+  end
 
   create_table "bundles", force: :cascade do |t|
     t.integer  "bundle_quantity"
