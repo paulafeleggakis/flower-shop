@@ -40,7 +40,11 @@ RSpec.describe LineItem, type: :model do
         expect(@line_item.calculate_bundle_quantities).to eq([[1,10,12.99],[1,5,6.99]])
       end
 
-      pending "raises an error if order quantity cannot be broken into available bundle sizes"
+      it "raises an error if order quantity cannot be broken into available bundle sizes" do
+        @line_item.quantity = 12
+        @line_item.save
+        expect(@line_item.errors.messages[:quantity]).to include("must be divisible by the following pack sizes: 10,5")
+      end
 
     end
 
