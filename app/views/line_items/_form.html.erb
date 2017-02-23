@@ -17,7 +17,7 @@
       </tr>
       <tr>
         <td><%= f.collection_select(:product_id, Product.order('name ASC'), :id, :name, {:prompt => 'Please select a Product'}) %></td>
-        <td><%= f.number_field(:quantity) %></td>
+        <td><%= f.number_field(:quantity, options ={value: 1, min: 1}) %></td>
       </tr>
     </table>
 
