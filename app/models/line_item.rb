@@ -5,7 +5,7 @@ class LineItem < ApplicationRecord
 
   validates :quantity, presence: true, numericality: true
 
-  before_create :allocate_bundle_totals
+  validate :allocate_bundle_totals
 
   def allocate_bundle_totals
     calculate_bundle_quantities.each do |quantity|
@@ -31,6 +31,7 @@ class LineItem < ApplicationRecord
     if check_valid_quantity?(bundle_quantities, self.quantity)
       bundle_quantities
     else
+      puts "Gets here"
       string = sorted_bundles.map{|pack|pack[0]}.map {|a| a.to_s}.join(",")
       errors.add(:quantity, "must be divisible by the following pack sizes: #{string}")
     end

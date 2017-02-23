@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Items for Order #<%= @items[0].order_id %></h1>
+<h1>Items for Order #<%= @line_items[0].order_id %></h1>
 
 <table>
   <thead>
@@ -20,11 +20,11 @@
         <td style="width:130px"> <%= item.product.name %></td>
         <td style="width:130px"> <%= item.product.code %></td>
         <td style="width:130px"> <%= item.quantity %></td>
-        <% item.totals.each do |total| %>
-            <td style="width:130px"> $<%= (total.total * total.price).to_f%> </td>
-            <td style="width:130px"> <%= total.total %> </td>
-            <td style="width:130px"> <%= total.quantity %> </td>
-            <td style="width:130px"> $<%= total.price %> </td>
+        <% item.bundle_totals.each do |total| %>
+            <td style="width:130px"> $<%= (total.bundle_quantity * total.bundle_cost).to_f%> </td>
+            <td style="width:130px"> <%= total.bundle_quantity %> </td>
+            <td style="width:130px"> <%= total.bundle_size %> </td>
+            <td style="width:130px"> $<%= total.bundle_cost %> </td>
         <% end %>
   <% end %>
   </tr>
