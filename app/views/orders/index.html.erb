@@ -4,20 +4,22 @@
 
 <table>
   <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th>Order Number</th>
+    <th>Total Cost</th>
+    <th colspan="3"></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @orders.each do |order| %>
+  <% @orders.each do |order| %>
       <tr>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>#<%= order.id %></td>
+        <td><%= number_to_currency(order.total_cost) %></td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
+
 </table>
 
 <br>

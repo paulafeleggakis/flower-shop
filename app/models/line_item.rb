@@ -13,6 +13,10 @@ class LineItem < ApplicationRecord
     end
   end
 
+  def item_total_cost
+    bundle_totals.map(&:bundle_cost).inject(0){|memo,cost| memo + cost}
+  end
+
   private
 
   def calculate_bundle_quantities

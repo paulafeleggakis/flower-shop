@@ -4,6 +4,7 @@ class LineItemsController < ApplicationController
 
   def index
     @line_items = @order.line_items
+    @order_total = @order.total_cost
   end
 
   def new
