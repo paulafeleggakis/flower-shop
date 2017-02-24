@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170222101003) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "bundle_totals", force: :cascade do |t|
     t.integer  "bundle_quantity"
     t.integer  "bundle_size"
@@ -19,7 +22,7 @@ ActiveRecord::Schema.define(version: 20170222101003) do
     t.integer  "line_item_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.index ["line_item_id"], name: "index_bundle_totals_on_line_item_id"
+    t.index ["line_item_id"], name: "index_bundle_totals_on_line_item_id", using: :btree
   end
 
   create_table "bundles", force: :cascade do |t|
@@ -28,7 +31,7 @@ ActiveRecord::Schema.define(version: 20170222101003) do
     t.integer  "product_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.index ["product_id"], name: "index_bundles_on_product_id"
+    t.index ["product_id"], name: "index_bundles_on_product_id", using: :btree
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -37,8 +40,8 @@ ActiveRecord::Schema.define(version: 20170222101003) do
     t.integer  "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_line_items_on_order_id"
-    t.index ["product_id"], name: "index_line_items_on_product_id"
+    t.index ["order_id"], name: "index_line_items_on_order_id", using: :btree
+    t.index ["product_id"], name: "index_line_items_on_product_id", using: :btree
   end
 
   create_table "orders", force: :cascade do |t|
@@ -53,4 +56,8 @@ ActiveRecord::Schema.define(version: 20170222101003) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "bundle_totals", "line_items"
+  add_foreign_key "bundles", "products"
+  add_foreign_key "line_items", "orders"
+  add_foreign_key "line_items", "products"
 end

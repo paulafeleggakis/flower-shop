@@ -1,24 +1,27 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Heroku URL
+https://secret-caverns-60431.herokuapp.com/
 
-Things you may want to cover:
+## Ruby Version
+ruby-2.2.3
 
-* Ruby version
+## Project-bootstrapping
 
-* System dependencies
+###Database setup
+From a postgres console:
 
-* Configuration
+```shell
+CREATE DATABASE development;
+CREATE DATABASE test;
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+###Clone Github Repo
+```shell
+git clone https://github.com/paulafeleggakis/bakery-app.git
+cd bakery-app
+bundle exec rails db:migrate db:seed db:test:prepare
+bundle install
+bundle exec rails s
+```
+The app should be available on localhost:3000
