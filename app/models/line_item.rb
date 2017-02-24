@@ -14,7 +14,7 @@ class LineItem < ApplicationRecord
   end
 
   def item_total_cost
-    bundle_totals.map(&:bundle_cost).inject(0){|memo,cost| memo + cost}
+    bundle_totals.map{|f| [f.bundle_cost, f.bundle_quantity]}.inject(0){|memo, cost| memo + (cost[0] * cost[1])}
   end
 
   private

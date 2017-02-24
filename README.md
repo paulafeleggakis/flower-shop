@@ -39,7 +39,7 @@ Please refer to design_documentation folder for supporting documentation.
 * Use a noun extraction approach to help with class identification.
 * Sketch up rough class diagram (this was revised as I progressed through the task)
 * Initialize repo on GitHub.
-* Dev approach can be seen through my commit history.
+* Dev approach can be seen through my commit history (refer to git_history folder).
 * Deploy onto Heroku 
 
 ## Limitations of Solution and Possible Improvements
