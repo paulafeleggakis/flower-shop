@@ -1,10 +1,13 @@
 # README
 
-## Heroku URL
+## Heroku Endpoint
 https://secret-caverns-60431.herokuapp.com/
 
 ## Ruby Version
-ruby-2.2.3
+ruby 2.2.3p173
+
+## Rails Version
+5.0.1
 
 ## Project-bootstrapping
 
@@ -18,8 +21,8 @@ CREATE DATABASE test;
 
 ###Clone Github Repo
 ```shell
-git clone https://github.com/paulafeleggakis/bakery-app.git
-cd bakery-app
+git clone https://github.com/paulafeleggakis/flower-shop.git
+cd flower-shop
 bundle exec rails db:migrate db:seed db:test:prepare
 bundle install
 bundle exec rails s
