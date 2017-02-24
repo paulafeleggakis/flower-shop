@@ -1,7 +1,7 @@
 # README
 
 ## Heroku Endpoint
-https://secret-caverns-60431.herokuapp.com/
+https://guarded-depths-29391.herokuapp.com/
 
 ## Ruby Version
 ruby 2.2.3p173
